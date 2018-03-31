@@ -4,6 +4,8 @@ import org.restlet.Component;
 import org.restlet.data.Protocol;
 import org.restlet.service.LogService;
 
+import it.therickys93.wikiserver.utils.Configurations;
+
 public class Server {
 	private final Component component;
 	

@@ -13,6 +13,7 @@ public class IndexResource extends ServerResource {
 
 	@Get
 	public StringRepresentation hello() throws FileNotFoundException {
+		getLogger().info("GET /");
 		Scanner scanner = new Scanner(new File("src/main/resources/index.html"));
 		String html = scanner.useDelimiter("\\Z").next();
 		scanner.close();

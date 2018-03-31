@@ -1,4 +1,4 @@
-package it.therickys93.wikiserver.server;
+package it.therickys93.wikiserver.utils;
 
 public class Configurations {
 

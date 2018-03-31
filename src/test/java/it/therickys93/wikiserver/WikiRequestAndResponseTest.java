@@ -14,14 +14,22 @@ import it.therickys93.wikiserver.wiki.WikiResponse;
 public class WikiRequestAndResponseTest {
 	
 	@Test
-	public void testOne() {
+	public void testRequest() {
 		assertEquals("ciao", WikiRequest.getMessage("{\"request\":\"ciao\"}"));
 		assertNull(WikiRequest.getMessage(""));
 	}
 	
 	@Test
-	public void testTwo() {
+	public void testResponse() {
 		assertEquals(createWikiResponse("ciao"), WikiResponse.sendMessage("ciao"));
+	}
+	
+	@Test
+	public void testImproveCodeCoverage() {
+		WikiRequest request = new WikiRequest();
+		request.toString();
+		WikiResponse response = new WikiResponse();
+		response.toString();
 	}
 	
 	private Map<String, String> createWikiResponse(String message) {
