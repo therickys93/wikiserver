@@ -1,0 +1,31 @@
+package it.therickys93.wikiserver.server;
+
+import java.io.IOException;
+import java.util.Map;
+
+import org.restlet.representation.Representation;
+import org.restlet.resource.Post;
+import org.restlet.resource.ServerResource;
+
+import it.therickys93.wikiserver.wiki.WikiRequest;
+import it.therickys93.wikiserver.wiki.WikiResponse;
+
+public class EchoResource extends ServerResource {
+
+	@Post
+	public Map<String, String> update(Representation data) throws IOException {
+		
+		// the request should be something like that
+		// {"request": "ciao"}
+		String coming = data.getText();
+		getLogger().info(coming);
+		
+		String message = WikiRequest.getMessage(coming);
+		getLogger().info(message);
+		
+		// the response should be something like that
+		// {"response": "ciao"}
+		return WikiResponse.sendMessage(message);
+	}
+	
+}
