@@ -10,3 +10,22 @@ after_success:
 - if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
   docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"; docker push therickys93/wikiserver;
   fi
+- sh set_tags.sh
+before_cache:
+- rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+cache:
+  directories:
+  - $HOME/.m2
+  - $HOME/.gradle
+  - $HOME/.gradle/caches/
+  - $HOME/.gradle/wrapper/
+deploy:
+  provider: releases
+  api_key:
+    secure: x1QzkXETL//GKntkpA2iMnL/5pWyOLnGWME81pjX3M49mppNE1KObMCdRQSM1Fc4CYJuZAX/KoggAY6RlbpwuUqZZIvIK3bqnf7JzhBdGZDDAM7IpDw0QOMTQ7qROJVx1qigeyo18W7MTveIi+HiD4cdZwgi9vSvVxMIbygiGzYYLFq1WGe3c/PgzTSOCsn/ApkoTVP6yW+pYX4CREpNfsxPr6ZCkcOpeaXXjRL51mD+emEuI4v1aft4nNq86nyJTUe7XeEVbnqh3cSGyPlKxc7E9EovY8YzS6MVD8Da0kCgdIxC/2zK27lNKFDqkdHWePo7l/6GrlyH8On1Ww5cojVU1pxWVmw0pbnGtuHMOptI82Hnhf8LKPs1eyrG0mOtVAZF5FYNW30rDL+gQ3Fc1ZARdHDZdma+wxp612atCH//Dw+ZcKjGU3UchRCn8BafW73tDyWA64QAQD30zzScGWlnE7pBA0JZsPk3Vu6x6mOECm6Otz7tMA3qeUHuJAkHlKPYZPbWmRTfoGsSgF2LBlKWHAxJ1AWzGKJVlxbGEbrG5XGHLrlLMyLj2sNNWpSgu5jIWciKCJfwdxPdQJUa5mglTBTyzOETZWX+TjwpYsMMEtgzjmUqA5ESTJWD7CwIToLkmAnD8PJPh1SOJ+f4YZSYr/snG3qjSCXVjIO7how=
+  file: build/libs/wikiserver.jar
+  file_glob: "true"
+  skip_cleanup: true
+  on:
+    branch: master
+    repo: therickys93/wikiserver
