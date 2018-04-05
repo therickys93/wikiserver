@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 
+import it.therickys93.wikiserver.wiki.CalculatorCommand;
 import it.therickys93.wikiserver.wiki.ConfirmCommand;
 import it.therickys93.wikiserver.wiki.DateCommand;
 import it.therickys93.wikiserver.wiki.HelloCommand;
@@ -62,6 +63,13 @@ public class BaseCommandsTest {
 	public void testWhatIsYourNameCommand(){
 		WhatIsYourNameCommand command = new WhatIsYourNameCommand();
 		assertEquals("il mio nome è Wiki", command.execute(request()));
+	}
+	
+	@Test
+	public void testCalculatorCommand(){
+		CalculatorCommand calc = new CalculatorCommand();
+		assertEquals("il risultato è 9", calc.execute("calcola 5 + 4"));
+		assertEquals("Errore nel calcolo", calc.execute("calcola bella"));
 	}
 	
 	private String request(){
