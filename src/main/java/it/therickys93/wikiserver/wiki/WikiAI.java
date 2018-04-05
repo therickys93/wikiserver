@@ -21,6 +21,12 @@ public class WikiAI {
 			commands.put("grazie", new ThankYouCommand());
 			commands.put("Grazie", new ThankYouCommand());
 			commands.put("conferma comando", new ConfirmCommand());
+			commands.put("cerca", new WikipediaSearchCommand());
+			commands.put("Cerca", new WikipediaSearchCommand());
+			commands.put("calcola", new CalculatorCommand());
+			commands.put("Calcola", new CalculatorCommand());
+			commands.put("meteo", new WeatherCommand());
+			commands.put("Meteo", new WeatherCommand());
 		}
 		
 		public Builder withCommands(Map<String, Command> commands){
