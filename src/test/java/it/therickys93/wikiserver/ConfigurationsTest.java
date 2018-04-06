@@ -28,6 +28,13 @@ public class ConfigurationsTest {
 	}
 	
 	@Test
+	public void testWoeid(){
+		assertEquals("716231", Configurations.woeid());
+		environmentVariables.set("WIKISERVER_WOEID", "718345");
+		assertEquals("718345", Configurations.woeid());
+	}
+	
+	@Test
 	public void testImproveCodeCoverage(){
 		Configurations conf = new Configurations();
 		conf.toString();

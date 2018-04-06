@@ -17,4 +17,12 @@ public class Configurations {
 			return "localhost";
 		}
 	}
+
+	public static String woeid() {
+		if(System.getenv("WIKISERVER_WOEID") != null){
+			return System.getenv("WIKISERVER_WOEID");
+		} else {
+			return "716231";
+		}
+	}
 }
