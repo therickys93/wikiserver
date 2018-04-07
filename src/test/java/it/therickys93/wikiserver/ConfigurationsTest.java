@@ -35,6 +35,43 @@ public class ConfigurationsTest {
 	}
 	
 	@Test
+	public void testPostgresHost(){
+		assertEquals("localhost", Configurations.databaseHost());
+		environmentVariables.set("WIKISERVER_DB_HOST", "postgres");
+		assertEquals("postgres", Configurations.databaseHost());
+	}
+	
+	@Test
+	public void testPostgresPort(){
+		assertEquals("5432", Configurations.databasePort());
+		environmentVariables.set("WIKISERVER_DB_PORT", "1234");
+		assertEquals("1234", Configurations.databasePort());
+	}
+	
+	@Test
+	public void testPostgresDatabase(){
+		assertEquals("wiki", Configurations.databaseDatabase());
+		environmentVariables.set("WIKISERVER_DB_DATABASE", "bella");
+		assertEquals("bella", Configurations.databaseDatabase());
+	}
+	
+	@Test
+	public void testPostgresConnectionString(){
+		assertEquals("jdbc:postgresql://localhost:5432/wiki", Configurations.connectionString());
+		environmentVariables.set("WIKISERVER_DB_HOST", "postgres");
+		environmentVariables.set("WIKISERVER_DB_PORT", "1234");
+		environmentVariables.set("WIKISERVER_DB_DATABASE", "bella");
+		assertEquals("jdbc:postgresql://postgres:1234/bella", Configurations.connectionString());
+	}
+	
+	@Test
+	public void testWikiControllerURL(){
+		assertEquals("http://192.168.15.16", Configurations.wikiControllerURL());
+		environmentVariables.set("WIKISERVER_CONTROLLER_URL", "http://controller");
+		assertEquals("http://controller", Configurations.wikiControllerURL());
+	}
+	
+	@Test
 	public void testImproveCodeCoverage(){
 		Configurations conf = new Configurations();
 		conf.toString();
