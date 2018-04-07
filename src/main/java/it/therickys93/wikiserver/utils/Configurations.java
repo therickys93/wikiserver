@@ -53,4 +53,12 @@ public class Configurations {
 	public static String connectionString() {
 		return "jdbc:postgresql://" + Configurations.databaseHost() + ":" + Configurations.databasePort() + "/" + Configurations.databaseDatabase();
 	}
+
+	public static String wikiControllerURL() {
+		if(System.getenv("WIKISERVER_CONTROLLER_URL") != null){
+			return System.getenv("WIKISERVER_CONTROLLER_URL");
+		} else {
+			return "http://192.168.15.16";
+		}
+	}
 }

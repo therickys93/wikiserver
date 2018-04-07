@@ -5,6 +5,7 @@ import it.therickys93.wikiapi.controller.WikiRequest;
 import it.therickys93.wikiapi.model.Led;
 import it.therickys93.wikiserver.database.WikiDatabase;
 import it.therickys93.wikiserver.utils.CommandParser;
+import it.therickys93.wikiserver.utils.Configurations;
 
 public class SwitchOffCommand implements Command {
 
@@ -16,7 +17,7 @@ public class SwitchOffCommand implements Command {
 			CommandParser pars = new CommandParser(request);
 			Led led = db.get(pars.getArgument());
 			db.close();
-			WikiRequest wiki = new WikiRequest("http://192.168.15.16");
+			WikiRequest wiki = new WikiRequest(Configurations.wikiControllerURL());
 			wiki.execute(new Off(led));
 			return "spento correttamente";
 		} catch (Exception e){

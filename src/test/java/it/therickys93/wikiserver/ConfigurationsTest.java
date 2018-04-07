@@ -65,6 +65,13 @@ public class ConfigurationsTest {
 	}
 	
 	@Test
+	public void testWikiControllerURL(){
+		assertEquals("http://192.168.15.16", Configurations.wikiControllerURL());
+		environmentVariables.set("WIKISERVER_CONTROLLER_URL", "http://controller");
+		assertEquals("http://controller", Configurations.wikiControllerURL());
+	}
+	
+	@Test
 	public void testImproveCodeCoverage(){
 		Configurations conf = new Configurations();
 		conf.toString();
