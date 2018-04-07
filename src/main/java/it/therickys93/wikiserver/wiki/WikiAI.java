@@ -28,6 +28,8 @@ public class WikiAI {
 			commands.put("rimuovi", new RemoveCommand());
 			commands.put("accendi", new SwitchOnCommand());
 			commands.put("spegni", new SwitchOffCommand());
+			commands.put("come stai", new HowAreYouCommand());
+			commands.put("come ti chiami", new WhatIsYourNameCommand());
 		}
 		
 		public Builder withCommands(Map<String, Command> commands){
