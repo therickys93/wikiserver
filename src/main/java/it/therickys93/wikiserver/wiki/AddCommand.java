@@ -1,5 +1,7 @@
 package it.therickys93.wikiserver.wiki;
 
+import it.therickys93.wikiapi.controller.Reset;
+import it.therickys93.wikiapi.controller.WikiRequest;
 import it.therickys93.wikiapi.model.Led;
 import it.therickys93.wikiserver.database.WikiDatabase;
 import it.therickys93.wikiserver.utils.CommandParser;
@@ -17,7 +19,12 @@ public class AddCommand implements Command {
 			DatabaseParser parser = new DatabaseParser(pars.getArgument());
 			Led led = parser.getLed();
 			db.insert(led);
+			int dbCount = db.count(led.getKey());
 			db.close();
+			if(dbCount == 1){
+				WikiRequest wiki = new WikiRequest("http://192.168.15.16");
+				wiki.execute(new Reset(led.getKey()));
+			}
 			return "aggiunto correttamente";
 		} catch (Exception e){
 			return "errore nell'aggiunta";

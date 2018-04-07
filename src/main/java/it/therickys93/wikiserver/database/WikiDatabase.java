@@ -37,6 +37,20 @@ public class WikiDatabase {
 		st.close();
 	}
 	
+	public int count(String name) throws SQLException{
+		int count = 0;
+		PreparedStatement st = this.conn.prepareStatement("SELECT COUNT(*) FROM connections WHERE key = ?"); 
+		st.setString(1, name);
+		ResultSet rs = st.executeQuery();
+		while (rs.next())
+		{
+			count = rs.getInt(1);
+		}
+		rs.close();
+		st.close();
+		return count;
+	}
+	
 	public Led get(String name) throws SQLException{
 		Led led = null;
 		PreparedStatement st = this.conn.prepareStatement("SELECT * FROM connections WHERE name = ?");

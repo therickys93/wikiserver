@@ -26,6 +26,8 @@ public class WikiAI {
 			commands.put("db", new DBStatusCommand());
 			commands.put("aggiungi", new AddCommand());
 			commands.put("rimuovi", new RemoveCommand());
+			commands.put("accendi", new SwitchOnCommand());
+			commands.put("spegni", new SwitchOffCommand());
 		}
 		
 		public Builder withCommands(Map<String, Command> commands){
