@@ -58,6 +58,10 @@ public class ConfigurationsTest {
 	@Test
 	public void testPostgresConnectionString(){
 		assertEquals("jdbc:postgresql://localhost:5432/wiki", Configurations.connectionString());
+		environmentVariables.set("WIKISERVER_DB_HOST", "postgres");
+		environmentVariables.set("WIKISERVER_DB_PORT", "1234");
+		environmentVariables.set("WIKISERVER_DB_DATABASE", "bella");
+		assertEquals("jdbc:postgresql://postgres:1234/bella", Configurations.connectionString());
 	}
 	
 	@Test

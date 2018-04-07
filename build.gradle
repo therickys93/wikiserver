@@ -34,7 +34,13 @@ jacocoTestReport {
         classDirectories = files(classDirectories.files.collect {
             fileTree(dir: "${buildDir}/classes/main", 
             exclude: ['it/therickys93/wikiserver/server/**',
+            		  'it/therickys93/wikiserver/database/**',
                       'it/therickys93/wikiserver/wiki/WikipediaSearchCommand.class',
+                      'it/therickys93/wikiserver/wiki/AddCommand.class',
+                      'it/therickys93/wikiserver/wiki/SwitchOffCommand.class',
+                      'it/therickys93/wikiserver/wiki/SwitchOnCommand.class',
+                      'it/therickys93/wikiserver/wiki/RemoveCommand.class',
+                      'it/therickys93/wikiserver/wiki/DBStatusCommand.class',
                       'it/therickys93/wikiserver/wiki/WeatherCommand.class'])
         })
     }
