@@ -14,19 +14,22 @@ public class WikiAI {
 		public Builder()  {
 			// create commands
 			commands.put("ciao", new HelloCommand());
-			commands.put("Ciao", new HelloCommand());
 			commands.put("data", new DateCommand());
 			commands.put("ore", new TimeCommand());
 			commands.put("ora", new TimeCommand());
 			commands.put("grazie", new ThankYouCommand());
-			commands.put("Grazie", new ThankYouCommand());
 			commands.put("conferma comando", new ConfirmCommand());
 			commands.put("cerca", new WikipediaSearchCommand());
-			commands.put("Cerca", new WikipediaSearchCommand());
 			commands.put("calcola", new CalculatorCommand());
 			commands.put("Calcola", new CalculatorCommand());
 			commands.put("meteo", new WeatherCommand());
-			commands.put("Meteo", new WeatherCommand());
+			commands.put("db", new DBStatusCommand());
+			commands.put("aggiungi", new AddCommand());
+			commands.put("rimuovi", new RemoveCommand());
+			commands.put("accendi", new SwitchOnCommand());
+			commands.put("spegni", new SwitchOffCommand());
+			commands.put("come stai", new HowAreYouCommand());
+			commands.put("come ti chiami", new WhatIsYourNameCommand());
 		}
 		
 		public Builder withCommands(Map<String, Command> commands){

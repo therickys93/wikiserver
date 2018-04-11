@@ -22,7 +22,7 @@ public class WikiResource extends ServerResource {
 		String fromClient = WikiRequest.getMessage(request);
 		getLogger().info(fromClient);
 		
-		String toClient = new WikiAI.Builder().build().reply(fromClient);
+		String toClient = new WikiAI.Builder().build().reply(fromClient.toLowerCase());
 		getLogger().info(toClient);
 		
 		return WikiResponse.sendMessage(toClient);

@@ -25,4 +25,40 @@ public class Configurations {
 			return "716231";
 		}
 	}
+
+	public static String databaseHost() {
+		if(System.getenv("WIKISERVER_DB_HOST") != null){
+			return System.getenv("WIKISERVER_DB_HOST");
+		} else {
+			return "localhost";
+		}
+	}
+
+	public static String databasePort() {
+		if(System.getenv("WIKISERVER_DB_PORT") != null){
+			return System.getenv("WIKISERVER_DB_PORT");
+		} else {
+			return "5432";
+		}
+	}
+
+	public static String databaseDatabase() {
+		if(System.getenv("WIKISERVER_DB_DATABASE") != null){
+			return System.getenv("WIKISERVER_DB_DATABASE");
+		} else {
+			return "wiki";
+		}
+	}
+
+	public static String connectionString() {
+		return "jdbc:postgresql://" + Configurations.databaseHost() + ":" + Configurations.databasePort() + "/" + Configurations.databaseDatabase();
+	}
+
+	public static String wikiControllerURL() {
+		if(System.getenv("WIKISERVER_CONTROLLER_URL") != null){
+			return System.getenv("WIKISERVER_CONTROLLER_URL");
+		} else {
+			return "http://192.168.15.16";
+		}
+	}
 }
