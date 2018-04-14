@@ -30,6 +30,25 @@ public class WikiDatabase {
 		st.close();
 	}
 	
+	private void insertMessage(String endpoint, String message, String type) throws SQLException{
+		PreparedStatement st = this.conn.prepareStatement("INSERT INTO messages (endpoint,message,type) VALUES (?,?,?)");
+		st.setString(1, endpoint);
+		st.setString(2, message);
+		st.setString(3, type);
+		st.executeUpdate();
+		st.close();
+	}
+	
+	public void insertRequestMessage(String endpoint, String message) throws SQLException {
+		String type = "request";
+		insertMessage(endpoint, message, type);
+	}
+	
+	public void insertResponseMessage(String endpoint, String message) throws SQLException {
+		String type = "response";
+		insertMessage(endpoint, message, type);
+	}
+	
 	public void remove(String name) throws SQLException{
 		PreparedStatement st = this.conn.prepareStatement("DELETE FROM connections WHERE name = ?");
 		st.setString(1, name);
