@@ -14,7 +14,7 @@ public class WikiDatabase {
 	private Connection conn;
 	
 	public void open() throws SQLException{
-		this.conn = DriverManager.getConnection(Configurations.connectionString());
+		this.conn = DriverManager.getConnection(Configurations.dbConnectionString(), Configurations.dbUsername(), Configurations.dbPassword());
 	}
 	
 	public void close() throws SQLException {

@@ -50,7 +50,7 @@ public class Configurations {
 		}
 	}
 
-	public static String connectionString() {
+	public static String dbConnectionString() {
 		return "jdbc:postgresql://" + Configurations.databaseHost() + ":" + Configurations.databasePort() + "/" + Configurations.databaseDatabase();
 	}
 
@@ -58,7 +58,23 @@ public class Configurations {
 		if(System.getenv("WIKISERVER_CONTROLLER_URL") != null){
 			return System.getenv("WIKISERVER_CONTROLLER_URL");
 		} else {
-			return "http://192.168.15.16";
+			return "http://localhost";
+		}
+	}
+
+	public static String dbUsername() {
+		if(System.getenv("WIKISERVER_DB_USER") != null){
+			return System.getenv("WIKISERVER_DB_USER");
+		} else {
+			return "postgres";
+		}
+	}
+
+	public static String dbPassword() {
+		if(System.getenv("WIKISERVER_DB_PASSWORD") != null){
+			return System.getenv("WIKISERVER_DB_PASSWORD");
+		} else {
+			return "example";
 		}
 	}
 }
