@@ -57,18 +57,32 @@ public class ConfigurationsTest {
 	
 	@Test
 	public void testPostgresConnectionString(){
-		assertEquals("jdbc:postgresql://localhost:5432/wiki", Configurations.connectionString());
+		assertEquals("jdbc:postgresql://localhost:5432/wiki", Configurations.dbConnectionString());
 		environmentVariables.set("WIKISERVER_DB_HOST", "postgres");
 		environmentVariables.set("WIKISERVER_DB_PORT", "1234");
 		environmentVariables.set("WIKISERVER_DB_DATABASE", "bella");
-		assertEquals("jdbc:postgresql://postgres:1234/bella", Configurations.connectionString());
+		assertEquals("jdbc:postgresql://postgres:1234/bella", Configurations.dbConnectionString());
 	}
 	
 	@Test
 	public void testWikiControllerURL(){
-		assertEquals("http://192.168.15.16", Configurations.wikiControllerURL());
+		assertEquals("http://localhost", Configurations.wikiControllerURL());
 		environmentVariables.set("WIKISERVER_CONTROLLER_URL", "http://controller");
 		assertEquals("http://controller", Configurations.wikiControllerURL());
+	}
+	
+	@Test
+	public void testDBUsername(){
+		assertEquals("postgres", Configurations.dbUsername());
+		environmentVariables.set("WIKISERVER_DB_USER", "root");
+		assertEquals("root", Configurations.dbUsername());
+	}
+	
+	@Test
+	public void testDBPassword(){
+		assertEquals("example", Configurations.dbPassword());
+		environmentVariables.set("WIKISERVER_DB_PASSWORD", "password");
+		assertEquals("password", Configurations.dbPassword());
 	}
 	
 	@Test
