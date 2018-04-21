@@ -87,4 +87,16 @@ public class WikiDatabase {
 		return led;
 	}
 	
+	public String getConnections() throws SQLException {
+		String response = "";
+		PreparedStatement st = this.conn.prepareStatement("SELECT * FROM connections");
+		ResultSet rs = st.executeQuery();
+		while(rs.next()){
+			response += rs.getString(2) + " collegato in " + rs.getString(3) + " alla presa " + rs.getInt(4) + "\n";
+		}
+		rs.close();
+		st.close();
+		return response;
+	}
+	
 }
