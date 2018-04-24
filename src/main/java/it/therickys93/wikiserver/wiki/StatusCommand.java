@@ -25,7 +25,7 @@ public class StatusCommand implements Command {
                 return "errore nello stato";
             } else {
                 if (status.ok()) {
-                    if (status.message().charAt(led.getPosition()) == '1') {
+                    if (status.message().charAt(led.getPosition() - 1) == '1') {
                         return "acceso";
                     } else {
                         return "spento";

@@ -11,7 +11,12 @@ public class ConnectionsCommand implements Command {
 			WikiDatabase db = new WikiDatabase();
 			db.open();
 			String response = db.getConnections();
-			return response;
+			db.close();
+			if(response.isEmpty()){
+				return "Nessuna connessione trovata";
+			} else {
+				return response;
+			}
 		} catch (Exception e){
 			return "errore nella lettura";
 		}
