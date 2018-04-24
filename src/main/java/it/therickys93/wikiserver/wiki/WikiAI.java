@@ -31,6 +31,7 @@ public class WikiAI {
 			commands.put("come stai", new HowAreYouCommand());
 			commands.put("come ti chiami", new WhatIsYourNameCommand());
 			commands.put("connessioni", new ConnectionsCommand());
+			commands.put("collegamenti", new ConnectionsCommand());
 			commands.put("stato", new StatusCommand());
 		}
 		
