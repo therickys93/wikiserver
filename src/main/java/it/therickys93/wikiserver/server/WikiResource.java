@@ -7,10 +7,10 @@ import org.restlet.representation.Representation;
 import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
 
+import it.therickys93.wikiapi.controller.WikiRequest;
+import it.therickys93.wikiapi.controller.WikiResponse;
 import it.therickys93.wikiserver.database.WikiDatabase;
 import it.therickys93.wikiserver.wiki.WikiAI;
-import it.therickys93.wikiserver.wiki.WikiRequest;
-import it.therickys93.wikiserver.wiki.WikiResponse;
 
 public class WikiResource extends ServerResource {
 	
@@ -24,7 +24,7 @@ public class WikiResource extends ServerResource {
 			String request = data.getText();
 			getLogger().info(request);
 			
-			String fromClient = WikiRequest.getMessage(request);
+			String fromClient = WikiRequest.readMessage(request);
 			getLogger().info(fromClient);
 			
 			db.insertRequestMessage("/v1/wiki", fromClient);

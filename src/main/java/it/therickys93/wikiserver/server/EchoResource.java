@@ -7,9 +7,9 @@ import org.restlet.representation.Representation;
 import org.restlet.resource.Post;
 import org.restlet.resource.ServerResource;
 
+import it.therickys93.wikiapi.controller.WikiRequest;
+import it.therickys93.wikiapi.controller.WikiResponse;
 import it.therickys93.wikiserver.database.WikiDatabase;
-import it.therickys93.wikiserver.wiki.WikiRequest;
-import it.therickys93.wikiserver.wiki.WikiResponse;
 
 public class EchoResource extends ServerResource {
 
@@ -26,7 +26,7 @@ public class EchoResource extends ServerResource {
 			
 			db.insertRequestMessage("/v1/echo", coming);
 			
-			String message = WikiRequest.getMessage(coming);
+			String message = WikiRequest.readMessage(coming);
 			getLogger().info(message);
 			
 			db.insertResponseMessage("/v1/echo", message);
