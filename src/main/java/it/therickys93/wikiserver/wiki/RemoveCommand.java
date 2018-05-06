@@ -11,11 +11,16 @@ public class RemoveCommand implements Command {
 			WikiDatabase db = new WikiDatabase();
 			db.open();
 			CommandParser pars = new CommandParser(request);
-			db.remove(pars.getArgument());
+			String response = "";
+			if(db.remove(pars.getArgument())){
+				response = "rimosso correttamente";
+			} else {
+				response = "nulla da rimuovere";
+			}
 			db.close();
-			return "rimosso correttamente";
+			return response;
 		} catch (Exception e){
-			return "errore nell'aggiunta";
+			return "errore nella rimozione";
 		}
 	}
 

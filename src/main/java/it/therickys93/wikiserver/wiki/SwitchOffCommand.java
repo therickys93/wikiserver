@@ -1,5 +1,8 @@
 package it.therickys93.wikiserver.wiki;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 import it.therickys93.wikiapi.controller.Off;
 import it.therickys93.wikiapi.controller.WikiController;
 import it.therickys93.wikiapi.model.Led;
@@ -20,7 +23,9 @@ public class SwitchOffCommand implements Command {
 			WikiController wiki = new WikiController(Configurations.wikiControllerURL());
 			wiki.execute(new Off(led));
 			return "spento correttamente";
-		} catch (Exception e){
+		} catch (SQLException e){
+			return "errore nel database";
+		} catch (IOException e){
 			return "errore nello spegnimento";
 		}
 	}

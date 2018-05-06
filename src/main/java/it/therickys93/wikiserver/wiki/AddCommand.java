@@ -1,5 +1,8 @@
 package it.therickys93.wikiserver.wiki;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 import it.therickys93.wikiapi.controller.Reset;
 import it.therickys93.wikiapi.controller.WikiController;
 import it.therickys93.wikiapi.model.Led;
@@ -27,8 +30,10 @@ public class AddCommand implements Command {
 				wiki.execute(new Reset(led.getKey()));
 			}
 			return "aggiunto correttamente";
-		} catch (Exception e){
-			return "errore nell'aggiunta";
+		} catch (SQLException e){
+			return "errore nel database";
+		} catch (IOException e){
+			return "aggiunto correttamente solo nel database";
 		}
 	}
 
