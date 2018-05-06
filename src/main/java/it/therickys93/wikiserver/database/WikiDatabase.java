@@ -21,22 +21,34 @@ public class WikiDatabase {
 		this.conn.close();
 	}
 	
-	public void insert(Led led) throws SQLException{
+	public boolean insert(Led led) throws SQLException{
+		int rows = 0;
 		PreparedStatement st = this.conn.prepareStatement("INSERT INTO connections (name,key,pin) VALUES (?,?,?)");
 		st.setString(1, led.getName());
 		st.setString(2, led.getKey());
 		st.setInt(3, led.getPosition());
-		st.executeUpdate();
+		rows = st.executeUpdate();
 		st.close();
+		if(rows > 0){
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
-	private void insertMessage(String endpoint, String message, String type) throws SQLException{
+	private boolean insertMessage(String endpoint, String message, String type) throws SQLException{
+		int rows = 0;
 		PreparedStatement st = this.conn.prepareStatement("INSERT INTO messages (endpoint,message,type) VALUES (?,?,?)");
 		st.setString(1, endpoint);
 		st.setString(2, message);
 		st.setString(3, type);
-		st.executeUpdate();
+		rows = st.executeUpdate();
 		st.close();
+		if(rows > 0){
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public void insertRequestMessage(String endpoint, String message) throws SQLException {
@@ -49,11 +61,17 @@ public class WikiDatabase {
 		insertMessage(endpoint, message, type);
 	}
 	
-	public void remove(String name) throws SQLException{
+	public boolean remove(String name) throws SQLException{
+		int rows = 0;
 		PreparedStatement st = this.conn.prepareStatement("DELETE FROM connections WHERE name = ?");
 		st.setString(1, name);
-		st.executeUpdate();
+		rows = st.executeUpdate();
 		st.close();
+		if(rows > 0){
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public int count(String name) throws SQLException{

@@ -1,5 +1,8 @@
 package it.therickys93.wikiserver.wiki;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 import it.therickys93.wikiapi.controller.Response;
 import it.therickys93.wikiapi.controller.Status;
 import it.therickys93.wikiapi.controller.WikiController;
@@ -34,7 +37,9 @@ public class StatusCommand implements Command {
                     return "errore nello stato";
                 }
             }
-		} catch (Exception e){
+		} catch (SQLException e){
+			return "errore nel database";
+		} catch (IOException e){
 			return "errore nello stato";
 		}
 	}

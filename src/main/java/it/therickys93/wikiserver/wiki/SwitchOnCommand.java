@@ -1,5 +1,8 @@
 package it.therickys93.wikiserver.wiki;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 import it.therickys93.wikiapi.controller.On;
 import it.therickys93.wikiapi.controller.WikiController;
 import it.therickys93.wikiapi.model.Led;
@@ -21,7 +24,9 @@ public class SwitchOnCommand implements Command {
 			WikiController wiki = new WikiController(Configurations.wikiControllerURL());
 			wiki.execute(new On(led));
 			return "acceso correttamente";
-		} catch (Exception e){
+		} catch (SQLException e){
+			return "errore nel database";
+		} catch (IOException e){
 			return "errore nell'accensione";
 		}
 	}
