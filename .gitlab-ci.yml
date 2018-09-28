@@ -1,0 +1,47 @@
+image: gradle:alpine
+
+variables:
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+
+before_script:
+  - export GRADLE_USER_HOME=`pwd`/.gradle
+
+stages:
+  - build
+  - test
+  - mattermost
+
+build:
+  stage: build
+  script: gradle --build-cache stage
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    policy: push
+    paths:
+      - build
+      - .gradle
+  artifacts:
+    paths:
+      - build/libs/
+
+
+test:
+  stage: test
+  script: gradle check
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    policy: pull
+    paths:
+      - build
+      - .gradle
+
+mattermost:
+  stage: mattermost
+  image: therickys93/mattermost-notification
+  before_script:
+    - echo "uploading to mattermost..."
+  script:
+    - mattermost-notification -m $CI_COMMIT_MESSAGE -f build/libs/wikiserver.jar -t wiki -c town-square -u mattermost.wiki.home
+
+
+
