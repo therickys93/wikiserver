@@ -86,6 +86,13 @@ public class ConfigurationsTest {
 	}
 	
 	@Test
+	public void testQRCode(){
+		assertEquals("http://server.wiki.home", Configurations.qrcodeUrl());
+		environmentVariables.set("WIKISERVER_QR_CODE", "server");
+		assertEquals("server", Configurations.qrcodeUrl());
+	}
+	
+	@Test
 	public void testImproveCodeCoverage(){
 		Configurations conf = new Configurations();
 		conf.toString();

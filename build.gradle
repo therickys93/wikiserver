@@ -65,6 +65,8 @@ dependencies {
     compile 'org.slf4j:slf4j-api:1.7.22'
     compile 'com.github.fedy2:yahoo-weather-java-api:2.0.2'
     compile 'org.postgresql:postgresql:42.2.2'
+    compile "com.google.zxing:core:3.3.0"
+	compile 'com.google.zxing:javase:3.3.0'
     testCompile 'junit:junit:4.12'
     testCompile 'com.github.stefanbirkner:system-rules:1.17.0'
 }
