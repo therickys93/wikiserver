@@ -35,6 +35,7 @@ jacocoTestReport {
             fileTree(dir: it, 
             exclude: ['it/therickys93/wikiserver/server/**',
             		  'it/therickys93/wikiserver/database/**',
+            		  'it/therickys93/wikiserver/utils/QRCode.class',
                       'it/therickys93/wikiserver/wiki/WikipediaSearchCommand.class',
                       'it/therickys93/wikiserver/wiki/AddCommand.class',
                       'it/therickys93/wikiserver/wiki/ConnectionsCommand.class',
