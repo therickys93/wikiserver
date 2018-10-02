@@ -14,7 +14,7 @@ import com.google.zxing.WriterException;
 import it.therickys93.wikiserver.utils.Configurations;
 import it.therickys93.wikiserver.utils.QRCode;
 
-public class QRCodeResource extends ServerResource {
+public class QRCodeIndexResource extends ServerResource {
 	
 	@Get
 	public Representation qrcode() throws WriterException, IOException {
