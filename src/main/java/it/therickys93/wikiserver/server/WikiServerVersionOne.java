@@ -16,6 +16,8 @@ public class WikiServerVersionOne extends Application {
 		router.attach("/wiki", WikiResource.class);
 		getLogger().info("Started " + WikiResource.class.toString() + " @ /v1/wiki");
 		
+		router.attach("/qrcode", QRCodeVersionOneResource.class);
+		getLogger().info("Started " + QRCodeVersionOneResource.class.toString() + " @ /v1/qrcode");
 		
 		return router;
 	}

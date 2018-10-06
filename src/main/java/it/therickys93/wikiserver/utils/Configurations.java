@@ -77,4 +77,12 @@ public class Configurations {
 			return "example";
 		}
 	}
+
+	public static String qrcodeUrl() {
+		if(System.getenv("WIKISERVER_QR_CODE") != null){
+			return System.getenv("WIKISERVER_QR_CODE");
+		} else {
+			return "http://server.wiki.home";
+		}
+	}
 }

@@ -14,6 +14,10 @@ public class WikiServer extends Application {
 		router.attach("", IndexResource.class);
 		getLogger().info("Started " + IndexResource.class.toString() + " @ /");
 		
+		// GET /qrcode --> pagina che mostra il qrcode dell'indirizzo
+		router.attach("qrcode", QRCodeIndexResource.class);
+		getLogger().info("Started " + QRCodeIndexResource.class.toString() + " @ /qrcode");
+		
 		return router;
 	}
 	
