@@ -18,6 +18,10 @@ public class WikiServer extends Application {
 		router.attach("qrcode", QRCodeIndexResource.class);
 		getLogger().info("Started " + QRCodeIndexResource.class.toString() + " @ /qrcode");
 		
+		router.attach("bot/{token}", BotResource.class);
+		getLogger().info("Started " + BotResource.class.toString() + " @ /bot/{token}");
+
+		
 		return router;
 	}
 	
