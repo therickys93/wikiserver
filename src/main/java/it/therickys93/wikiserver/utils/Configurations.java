@@ -85,4 +85,13 @@ public class Configurations {
 			return "http://server.wiki.home";
 		}
 	}
+	
+	public static String telegramServerToken() {
+		if(System.getenv("TELEGRAM_SERVER_TOKEN") != null){
+			return System.getenv("TELEGRAM_SERVER_TOKEN");
+		} else {
+			return "123";
+		}
+	}
+	
 }
