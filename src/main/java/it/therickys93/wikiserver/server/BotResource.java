@@ -15,6 +15,12 @@ import com.pengrad.telegrambot.model.Chat;
 import com.pengrad.telegrambot.model.Update;
 
 import it.therickys93.wikiserver.utils.Configurations;
+import it.therickys93.wikiserver.wiki.CalculatorCommand;
+import it.therickys93.wikiserver.wiki.Command;
+import it.therickys93.wikiserver.wiki.HelloCommand;
+import it.therickys93.wikiserver.wiki.WeatherCommand;
+import it.therickys93.wikiserver.wiki.WikiAI;
+import it.therickys93.wikiserver.wiki.WikipediaSearchCommand;
 
 public class BotResource extends ServerResource {
 	
@@ -52,7 +58,7 @@ public class BotResource extends ServerResource {
 					+ "Per controllare lo stato dei nostri servizi clicca sul link: \n"
 					+ "www.itjustworks.it/status/";
 		} else {
-			answer = message;
+			answer = new WikiAI.Builder().withCommands(telegramCommands()).build().reply(message);
 		}
 		getLogger().info(answer);
 				
@@ -73,5 +79,15 @@ public class BotResource extends ServerResource {
 		getLogger().warning(GET_RESPONSE);
 		setStatus(Status.CLIENT_ERROR_BAD_REQUEST, GET_RESPONSE);
 		return null;
+	}
+	
+	private Map<String, Command> telegramCommands() {
+		Map<String, Command> commands = new HashMap<String, Command>();
+		commands.put("/start", new HelloCommand());
+		commands.put("/ciao", new HelloCommand());
+		commands.put("/cerca", new WikipediaSearchCommand());
+		commands.put("/calcola", new CalculatorCommand());
+		commands.put("/meteo", new WeatherCommand());
+		return commands;
 	}
 }
