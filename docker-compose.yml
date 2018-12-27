@@ -3,6 +3,8 @@ version: '2'
 services:
   redis:
     image: therickys93/wikiredis
+    volumes:
+      - redis_database:/data
     networks:
       - backbone
 
@@ -24,6 +26,8 @@ services:
     image: therickys93/wikidatabase
     environment:
      - POSTGRES_PASSWORD=example
+    volumes:
+     - postgresql_database:/var/lib/postgresql/data
     networks:
      - backbone
 
@@ -42,6 +46,11 @@ services:
     networks:
       - backbone
 
+volumes:
+  postgresql_database:
+    driver: local
+  redis_database:
+    driver: local
 
 networks:
   backbone:
