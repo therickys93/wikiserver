@@ -1,0 +1,48 @@
+version: '2'
+
+services:
+  redis:
+    image: therickys93/wikiredis
+    networks:
+      - backbone
+
+  controller:
+    image: therickys93/wikicontroller
+    environment:
+      - "HOST=redis"
+    networks:
+      - backbone
+
+  proxy:
+    image: therickys93/wikiproxy
+    ports:
+      - "80:80"
+    networks:
+      - backbone
+
+  postgres:
+    image: therickys93/wikidatabase
+    environment:
+     - POSTGRES_PASSWORD=example
+    networks:
+     - backbone
+
+  server:
+    build: .
+    environment:
+      - WIKISERVER_PORT=8080
+      - WIKISERVER_HOST=localhost
+      - WIKISERVER_WOEID=716231
+      - WIKISERVER_DB_HOST=postgres
+      - WIKISERVER_DB_PORT=5432
+      - WIKISERVER_DB_DATABASE=wiki
+      - WIKISERVER_CONTROLLER_URL=http://controller:3000
+    ports:
+      - "8080:8080"
+    networks:
+      - backbone
+
+
+networks:
+  backbone:
+    driver: bridge
