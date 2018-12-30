@@ -3,6 +3,7 @@ version: '2'
 services:
   redis:
     image: therickys93/wikiredis
+    restart: always
     volumes:
       - redis_database:/data
     networks:
@@ -10,6 +11,7 @@ services:
 
   controller:
     image: therickys93/wikicontroller
+    restart: always
     environment:
       - "HOST=redis"
     networks:
@@ -17,6 +19,7 @@ services:
 
   proxy:
     image: therickys93/wikiproxy
+    restart: always
     ports:
       - "80:80"
     networks:
@@ -24,6 +27,7 @@ services:
 
   postgres:
     image: therickys93/wikidatabase
+    restart: always
     environment:
      - POSTGRES_PASSWORD=example
     volumes:
@@ -33,6 +37,7 @@ services:
 
   server:
     build: .
+    restart: always
     environment:
       - WIKISERVER_PORT=8080
       - WIKISERVER_HOST=localhost
