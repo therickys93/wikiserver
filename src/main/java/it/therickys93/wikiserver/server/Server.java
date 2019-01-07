@@ -15,6 +15,7 @@ public class Server {
 		component.getDefaultHost().attach("/", new WikiServer());
 		component.getDefaultHost().attach("/v0", new WikiServerVersionZero());
 		component.getDefaultHost().attach("/v1", new WikiServerVersionOne());
+		component.getDefaultHost().attach("/v2", new WikiServerVersionTwo());
 		component.setLogService(new LogService(false));
 		component.getLogger().info("Server started @ http://" + Configurations.host() + ":" + Configurations.port());
 	}
