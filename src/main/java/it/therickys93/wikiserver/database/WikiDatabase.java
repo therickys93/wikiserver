@@ -51,14 +51,40 @@ public class WikiDatabase {
 		}
 	}
 	
+	private boolean insertMessageWithUserID(String endpoint, String message, String type, String user_id) throws SQLException{
+		int rows = 0;
+		PreparedStatement st = this.conn.prepareStatement("INSERT INTO messages (endpoint,message,type,user_id) VALUES (?,?,?,?)");
+		st.setString(1, endpoint);
+		st.setString(2, message);
+		st.setString(3, type);
+		st.setString(4, user_id);
+		rows = st.executeUpdate();
+		st.close();
+		if(rows > 0){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	public void insertRequestMessage(String endpoint, String message) throws SQLException {
 		String type = "request";
 		insertMessage(endpoint, message, type);
 	}
 	
+	public void insertRequestMessageWithUserID(String endpoint, String message, String user_id) throws SQLException {
+		String type = "request";
+		insertMessageWithUserID(endpoint, message, type, user_id);
+	}
+	
 	public void insertResponseMessage(String endpoint, String message) throws SQLException {
 		String type = "response";
 		insertMessage(endpoint, message, type);
+	}
+	
+	public void insertResponseMessageWithUserID(String endpoint, String message, String user_id) throws SQLException {
+		String type = "response";
+		insertMessageWithUserID(endpoint, message, type, user_id);
 	}
 	
 	public boolean remove(String name) throws SQLException{
