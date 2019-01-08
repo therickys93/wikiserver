@@ -14,16 +14,16 @@ import it.therickys93.wikiserver.utils.DatabaseParser;
 public class AddCommand implements Command {
 
 	@Override
-	public String execute(String request) {
+	public String execute(String message, String user_id) {
 
 		try {
 			WikiDatabase db = new WikiDatabase();
 			db.open();
-			CommandParser pars = new CommandParser(request);
+			CommandParser pars = new CommandParser(message);
 			DatabaseParser parser = new DatabaseParser(pars.getArgument());
 			Led led = parser.getLed();
-			db.insert(led);
-			int dbCount = db.count(led.getKey());
+			db.insert(led, user_id);
+			int dbCount = db.count(led.getKey(), user_id);
 			db.close();
 			if(dbCount == 1){
 				WikiController wiki = new WikiController(Configurations.wikiControllerURL());

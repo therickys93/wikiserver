@@ -14,12 +14,12 @@ import it.therickys93.wikiserver.utils.Configurations;
 public class StatusCommand implements Command {
 
 	@Override
-	public String execute(String request) {
+	public String execute(String message, String user_id) {
 		try {
 			WikiDatabase db = new WikiDatabase();
 			db.open();
-			CommandParser pars = new CommandParser(request);
-			Led led = db.get(pars.getArgument());
+			CommandParser pars = new CommandParser(message);
+			Led led = db.get(pars.getArgument(), user_id);
 			db.close();
 			WikiController wiki = new WikiController(Configurations.wikiControllerURL());
 			String response = wiki.execute(new Status(led.getKey()));

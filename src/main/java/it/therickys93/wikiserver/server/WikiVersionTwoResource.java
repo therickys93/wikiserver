@@ -30,7 +30,7 @@ public class WikiVersionTwoResource extends ServerResource {
 			
 			db.insertRequestMessageWithUserID("/v2/wiki", fromClient.get(0), fromClient.get(1));
 			
-			String toClient = new WikiAI.Builder().build().reply(fromClient.get(0).toLowerCase());
+			String toClient = new WikiAI.Builder().build().reply(fromClient.get(0).toLowerCase(), fromClient.get(1));
 			getLogger().info(toClient);
 			
 			db.insertResponseMessageWithUserID("/v2/wiki", toClient, fromClient.get(1));

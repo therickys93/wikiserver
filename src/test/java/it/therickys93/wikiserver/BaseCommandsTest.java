@@ -20,56 +20,56 @@ public class BaseCommandsTest {
 	@Test
 	public void testHelloCommand() {
 		HelloCommand hello = new HelloCommand();
-		assertEquals("ciao", hello.execute(request()));
+		assertEquals("ciao", hello.execute(request(), "pippo"));
 	}
 	
 	@Test
 	public void testConfirmCommand(){
 		ConfirmCommand confirm = new ConfirmCommand();
-		assertEquals("comando confermato", confirm.execute(request()));
+		assertEquals("comando confermato", confirm.execute(request(), "pippo"));
 	}
 	
 	@Test
 	public void testInvalidCommand(){
 		InvalidCommand invalid = new InvalidCommand();
-		assertEquals("Non ho capito. Ripeti per favore", invalid.execute(request()));
+		assertEquals("Non ho capito. Ripeti per favore", invalid.execute(request(), "pippo"));
 	}
 	
 	@Test
 	public void testThankYouCommand(){
 		ThankYouCommand thank = new ThankYouCommand();
-		assertEquals("prego", thank.execute(request()));
+		assertEquals("prego", thank.execute(request(), "pippo"));
 	}
 	
 	@Test
 	public void testDateCommand(){
 		DateCommand date = new DateCommand();
-		assertNotNull(date.execute(request()));
+		assertNotNull(date.execute(request(), "pippo"));
 	}
 	
 	@Test
 	public void testTimeCommand(){
 		TimeCommand time = new TimeCommand();
-		assertNotNull(time.execute(request()));
+		assertNotNull(time.execute(request(), "pippo"));
 	}
 	
 	@Test
 	public void testHowAreYouCommand(){
 		HowAreYouCommand command = new HowAreYouCommand();
-		assertEquals("bene, grazie", command.execute(request()));
+		assertEquals("bene, grazie", command.execute(request(), "pippo"));
 	}
 	
 	@Test
 	public void testWhatIsYourNameCommand(){
 		WhatIsYourNameCommand command = new WhatIsYourNameCommand();
-		assertEquals("il mio nome è Wiki", command.execute(request()));
+		assertEquals("il mio nome è Wiki", command.execute(request(), "pippo"));
 	}
 	
 	@Test
 	public void testCalculatorCommand(){
 		CalculatorCommand calc = new CalculatorCommand();
-		assertEquals("il risultato è 9", calc.execute("calcola 5 + 4"));
-		assertEquals("Errore nel calcolo", calc.execute("calcola bella"));
+		assertEquals("il risultato è 9", calc.execute("calcola 5 + 4", "pippo"));
+		assertEquals("Errore nel calcolo", calc.execute("calcola bella", "pippo"));
 	}
 	
 	private String request(){

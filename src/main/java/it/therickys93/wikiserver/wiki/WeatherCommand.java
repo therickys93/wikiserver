@@ -11,7 +11,7 @@ public class WeatherCommand implements Command {
 	private static final String GIUSSANO_YAHOO_WOEID = "716231";
 
 	@Override
-	public String execute(String request) {
+	public String execute(String message, String user_id) {
 		
 		try {
 			YahooWeatherService service = new YahooWeatherService();

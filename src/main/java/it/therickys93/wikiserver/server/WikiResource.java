@@ -29,7 +29,7 @@ public class WikiResource extends ServerResource {
 			
 			db.insertRequestMessage("/v1/wiki", fromClient);
 			
-			String toClient = new WikiAI.Builder().build().reply(fromClient.toLowerCase());
+			String toClient = new WikiAI.Builder().build().reply(fromClient.toLowerCase(), null);
 			getLogger().info(toClient);
 			
 			db.insertResponseMessage("/v1/wiki", toClient);

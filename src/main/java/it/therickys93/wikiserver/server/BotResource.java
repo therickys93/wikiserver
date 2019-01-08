@@ -58,7 +58,7 @@ public class BotResource extends ServerResource {
 					+ "Per controllare lo stato dei nostri servizi clicca sul link: \n"
 					+ "www.itjustworks.it/status/";
 		} else {
-			answer = new WikiAI.Builder().withCommands(telegramCommands()).build().reply(message);
+			answer = new WikiAI.Builder().withCommands(telegramCommands()).build().reply(message, null);
 		}
 		getLogger().info(answer);
 				

@@ -52,15 +52,15 @@ public class WikiAI {
 		this.commands = build.commands;
 	}
 	
-	public String reply(String message) {
+	public String reply(String message, String user_id) {
 		Iterator<String> keys = commands.keySet().iterator();
 		while(keys.hasNext()){
 			String key = keys.next();
 			if(message.contains(key)){
-				return commands.get(key).execute(message);
+				return commands.get(key).execute(message, user_id);
 			}
 		}
-		return new InvalidCommand().execute(message);
+		return new InvalidCommand().execute(message, user_id);
 	}
 	
 }
