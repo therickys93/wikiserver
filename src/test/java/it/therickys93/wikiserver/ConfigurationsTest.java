@@ -93,6 +93,13 @@ public class ConfigurationsTest {
 	}
 	
 	@Test
+	public void testTelegramServerToken(){
+		assertEquals("123", Configurations.telegramServerToken());
+		environmentVariables.set("TELEGRAM_SERVER_TOKEN", "token");
+		assertEquals("token", Configurations.telegramServerToken());
+	}
+	
+	@Test
 	public void testImproveCodeCoverage(){
 		Configurations conf = new Configurations();
 		conf.toString();
