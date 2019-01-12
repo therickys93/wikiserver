@@ -1,6 +1,7 @@
 package it.therickys93.wikiserver.server;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import org.restlet.representation.Representation;
@@ -12,7 +13,7 @@ import it.therickys93.wikiapi.controller.WikiResponse;
 import it.therickys93.wikiserver.database.WikiDatabase;
 import it.therickys93.wikiserver.wiki.WikiAI;
 
-public class WikiResource extends ServerResource {
+public class WikiVersionTwoResource extends ServerResource {
 	
 	@Post
 	public Map<String, String> update(Representation data) throws IOException {
@@ -24,15 +25,15 @@ public class WikiResource extends ServerResource {
 			String request = data.getText();
 			getLogger().info(request);
 			
-			String fromClient = WikiRequest.readMessage(request);
-			getLogger().info(fromClient);
+			List<String> fromClient = WikiRequest.readMessageWithUserID(request);
+			getLogger().info(fromClient.toString());
 			
-			db.insertRequestMessage("/v1/wiki", fromClient);
+			db.insertRequestMessageWithUserID("/v2/wiki", fromClient.get(0), fromClient.get(1));
 			
-			String toClient = new WikiAI.Builder().build().reply(fromClient.toLowerCase(), null);
+			String toClient = new WikiAI.Builder().build().reply(fromClient.get(0).toLowerCase(), fromClient.get(1));
 			getLogger().info(toClient);
 			
-			db.insertResponseMessage("/v1/wiki", toClient);
+			db.insertResponseMessageWithUserID("/v2/wiki", toClient, fromClient.get(1));
 			
 			db.close();
 			return WikiResponse.sendMessage(toClient);

@@ -1,6 +1,7 @@
 package it.therickys93.wikiserver.wiki;
 
 import java.math.BigDecimal;
+
 import com.github.bgora.rpnlibrary.CalculatorInterface;
 import com.github.bgora.rpnlibrary.advanced.AdvancedCalculatorFactory;
 
@@ -9,9 +10,9 @@ import it.therickys93.wikiserver.utils.CommandParser;
 public class CalculatorCommand implements Command {
 
 	@Override
-	public String execute(String request) {
+	public String execute(String message, String user_id) {
 		
-		CommandParser parser = new CommandParser(request);
+		CommandParser parser = new CommandParser(message);
 		
 		try {
 			AdvancedCalculatorFactory advancedCalculatorFactory = new AdvancedCalculatorFactory();

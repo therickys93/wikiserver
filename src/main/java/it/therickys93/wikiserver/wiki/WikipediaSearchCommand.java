@@ -12,8 +12,8 @@ import com.google.gson.JsonParser;
 public class WikipediaSearchCommand implements Command {
 	
 	@Override
-	public String execute(String request) {
-		String [] arr = request.split(" ", 2);
+	public String execute(String message, String user_id) {
+		String [] arr = message.split(" ", 2);
 		String search = arr[1];
 		Client client = new Client(new Context(), Protocol.HTTP);
 		ClientResource clientResource = new ClientResource("https://it.wikipedia.org/w/api.php?action=opensearch&search="+search+"&limit=1&format=json");

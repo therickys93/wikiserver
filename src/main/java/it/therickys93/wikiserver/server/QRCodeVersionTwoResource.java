@@ -14,13 +14,13 @@ import com.google.zxing.WriterException;
 import it.therickys93.wikiserver.utils.Configurations;
 import it.therickys93.wikiserver.utils.QRCode;
 
-public class QRCodeVersionZeroResource extends ServerResource {
+public class QRCodeVersionTwoResource extends ServerResource {
 
-	private static final String url = "/v0/wiki";
+	private static final String url = "/v2/wiki";
 	
 	@Get
 	public Representation qrcode() throws WriterException, IOException {
-		getLogger().info("GET /v0/qrcode");
+		getLogger().info("GET /v2/qrcode");
 		byte[] data = QRCode.generateQRCode(Configurations.qrcodeUrl() + url);
 		ObjectRepresentation<byte []> or = new ObjectRepresentation<byte[]>(data, MediaType.IMAGE_PNG){
 			@Override
@@ -31,5 +31,5 @@ public class QRCodeVersionZeroResource extends ServerResource {
 		};
 		return or;
 	}
-	
+
 }

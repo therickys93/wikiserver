@@ -16,21 +16,21 @@ public class WikiAITest {
 	@Test
 	public void testOkCommand(){
 		String request = "ciao";
-		String response = new WikiAI.Builder().build().reply(request);
+		String response = new WikiAI.Builder().build().reply(request, "pippo");
 		assertEquals("ciao", response);
 	}
 	
 	@Test
 	public void testWithCustomCommands(){
 		String request = "ciao";
-		String response = new WikiAI.Builder().withCommands(commands()).build().reply(request);
+		String response = new WikiAI.Builder().withCommands(commands()).build().reply(request, "pippo");
 		assertEquals("ciao", response);
 	}
 	
 	@Test
 	public void testInvalidCommand(){
 		String request = "bella";
-		String response = new WikiAI.Builder().build().reply(request);
+		String response = new WikiAI.Builder().build().reply(request, "pippo");
 		assertEquals("Non ho capito. Ripeti per favore", response);
 	}
 	

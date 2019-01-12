@@ -13,6 +13,9 @@ public class WikiServerVersionZero extends Application {
 		router.attach("/echo", EchoResource.class);
 		getLogger().info("Started " + EchoResource.class.toString() + " @ /v0/echo");
 		
+		router.attach("/wiki", EchoResource.class);
+		getLogger().info("Started " + EchoResource.class.toString() + " @ /v0/wiki");
+		
 		router.attach("/qrcode", QRCodeVersionZeroResource.class);
 		getLogger().info("Started " + QRCodeVersionZeroResource.class.toString() + " @ /v0/qrcode");
 		
