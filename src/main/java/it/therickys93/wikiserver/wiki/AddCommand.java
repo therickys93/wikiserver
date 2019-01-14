@@ -3,7 +3,7 @@ package it.therickys93.wikiserver.wiki;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import it.therickys93.wikiapi.controller.Reset;
+import it.therickys93.wikiapi.controller.Init;
 import it.therickys93.wikiapi.controller.WikiController;
 import it.therickys93.wikiapi.model.Led;
 import it.therickys93.wikiserver.database.WikiDatabase;
@@ -27,7 +27,7 @@ public class AddCommand implements Command {
 			db.close();
 			if(dbCount == 1){
 				WikiController wiki = new WikiController(Configurations.wikiControllerURL());
-				wiki.execute(new Reset(led.getKey()));
+				wiki.execute(new Init(led.getKey()));
 			}
 			return "aggiunto correttamente";
 		} catch (SQLException e){
