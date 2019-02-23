@@ -18,7 +18,7 @@ public class SwitchOffCommand implements Command {
 			WikiDatabase db = new WikiDatabase();
 			db.open();
 			CommandParser pars = new CommandParser(message);
-			Led led = db.get(pars.getArgument(), user_id);
+			Led led = db.getLed(pars.getArgument(), user_id);
 			db.close();
 			WikiController wiki = new WikiController(Configurations.wikiControllerURL());
 			wiki.execute(new Off(led));
