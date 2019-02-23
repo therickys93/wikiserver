@@ -16,6 +16,11 @@ public class RemoveCommand implements Command {
 				response = "rimosso correttamente";
 			} else {
 				response = "nulla da rimuovere";
+				if(db.removeSensor(pars.getArgument(), user_id)){
+					response = "rimosso correttamente";
+				} else {
+					response = "nulla da rimuovere";
+				}
 			}
 			db.close();
 			return response;
