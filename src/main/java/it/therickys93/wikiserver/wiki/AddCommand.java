@@ -23,7 +23,7 @@ public class AddCommand implements Command {
 			DatabaseParser parser = new DatabaseParser(pars.getArgument());
 			Led led = parser.getLed();
 			db.insert(led, user_id);
-			int dbCount = db.count(led.getKey(), user_id);
+			int dbCount = db.countLed(led.getKey(), user_id);
 			db.close();
 			if(dbCount == 1){
 				WikiController wiki = new WikiController(Configurations.wikiControllerURL());

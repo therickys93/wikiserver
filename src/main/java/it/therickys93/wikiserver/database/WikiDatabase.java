@@ -105,7 +105,7 @@ public class WikiDatabase {
 		insertMessageWithUserID(endpoint, message, type, user_id);
 	}
 	
-	public boolean remove(String name, String user_id) throws SQLException{
+	public boolean removeLed(String name, String user_id) throws SQLException{
 		int rows = 0;
 		PreparedStatement st;
 		if(user_id != null){
@@ -125,7 +125,27 @@ public class WikiDatabase {
 		}
 	}
 	
-	public int count(String name, String user_id) throws SQLException{
+	public boolean removeSensor(String name, String user_id) throws SQLException {
+		int rows = 0;
+		PreparedStatement st;
+		if(user_id != null){
+			st = this.conn.prepareStatement("DELETE FROM sensors WHERE name = ? AND user_id = ?");
+			st.setString(1, name);
+			st.setString(2, user_id);
+		} else {
+			st = this.conn.prepareStatement("DELETE FROM sensors WHERE name = ? AND user_id IS NULL");
+			st.setString(1, name);
+		}
+		rows = st.executeUpdate();
+		st.close();
+		if(rows > 0){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public int countLed(String name, String user_id) throws SQLException{
 		int count = 0;
 		PreparedStatement st;
 		if(user_id != null){
@@ -139,6 +159,26 @@ public class WikiDatabase {
 		ResultSet rs = st.executeQuery();
 		while (rs.next())
 		{
+			count = rs.getInt(1);
+		}
+		rs.close();
+		st.close();
+		return count;
+	}
+	
+	public int countSensor(String name, String user_id) throws SQLException {
+		int count = 0;
+		PreparedStatement st;
+		if(user_id != null){
+			st = this.conn.prepareStatement("SELECT COUNT(*) FROM sensors WHERE key = ? AND user_id = ?");
+			st.setString(1, name);
+			st.setString(2, user_id);
+		} else {
+			st = this.conn.prepareStatement("SELECT COUNT(*) FROM sensors WHERE key = ? AND user_id IS NULL");
+			st.setString(1, name);
+		}
+		ResultSet rs = st.executeQuery();
+		while(rs.next()){
 			count = rs.getInt(1);
 		}
 		rs.close();
