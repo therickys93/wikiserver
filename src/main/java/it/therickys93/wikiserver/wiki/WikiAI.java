@@ -32,6 +32,7 @@ public class WikiAI {
 			commands.put("come ti chiami", new WhatIsYourNameCommand());
 			commands.put("connessioni", new ConnectionsCommand());
 			commands.put("collegamenti", new ConnectionsCommand());
+			commands.put("sensori", new GetSensorsCommand());
 			commands.put("stato", new StatusCommand());
 			commands.put("apri", new OpenCloseCommand());
 			commands.put("chiudi", new OpenCloseCommand());
