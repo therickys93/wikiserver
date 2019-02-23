@@ -25,6 +25,7 @@ public class WikiAI {
 			commands.put("meteo", new WeatherCommand());
 			commands.put("db", new DBStatusCommand());
 			commands.put("aggiungi", new AddCommand());
+			commands.put("nuovo", new NewCommand());
 			commands.put("rimuovi", new RemoveCommand());
 			commands.put("accendi", new SwitchOnCommand());
 			commands.put("spegni", new SwitchOffCommand());

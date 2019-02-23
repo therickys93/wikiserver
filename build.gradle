@@ -38,6 +38,7 @@ jacocoTestReport {
             		  'it/therickys93/wikiserver/utils/QRCode.class',
                       'it/therickys93/wikiserver/wiki/WikipediaSearchCommand.class',
                       'it/therickys93/wikiserver/wiki/AddCommand.class',
+                      'it/therickys93/wikiserver/wiki/NewCommand.class',
                       'it/therickys93/wikiserver/wiki/ConnectionsCommand.class',
                       'it/therickys93/wikiserver/wiki/GetSensorsCommand.class',
                       'it/therickys93/wikiserver/wiki/SensorsCommand.class',
