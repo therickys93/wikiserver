@@ -1,5 +1,5 @@
 FROM alpine
-RUN apk update && apk add --no-cache bash openjdk8 libstdc++
+RUN apk update && apk add --no-cache nss bash openjdk8 libstdc++
 RUN rm -rf /var/cache/apk/*
 ADD . /app
 WORKDIR /app

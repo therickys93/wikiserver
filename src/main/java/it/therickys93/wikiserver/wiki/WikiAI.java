@@ -25,6 +25,7 @@ public class WikiAI {
 			commands.put("meteo", new WeatherCommand());
 			commands.put("db", new DBStatusCommand());
 			commands.put("aggiungi", new AddCommand());
+			commands.put("nuovo", new NewCommand());
 			commands.put("rimuovi", new RemoveCommand());
 			commands.put("accendi", new SwitchOnCommand());
 			commands.put("spegni", new SwitchOffCommand());
@@ -32,6 +33,8 @@ public class WikiAI {
 			commands.put("come ti chiami", new WhatIsYourNameCommand());
 			commands.put("connessioni", new ConnectionsCommand());
 			commands.put("collegamenti", new ConnectionsCommand());
+			commands.put("sensori", new GetSensorsCommand());
+			commands.put("sensore", new SensorsCommand());
 			commands.put("stato", new StatusCommand());
 			commands.put("apri", new OpenCloseCommand());
 			commands.put("chiudi", new OpenCloseCommand());

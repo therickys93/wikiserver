@@ -5,13 +5,13 @@ import java.sql.SQLException;
 
 import it.therickys93.wikiapi.controller.Init;
 import it.therickys93.wikiapi.controller.WikiController;
-import it.therickys93.wikiapi.model.Led;
+import it.therickys93.wikiapi.model.Sensor;
 import it.therickys93.wikiserver.database.WikiDatabase;
 import it.therickys93.wikiserver.utils.CommandParser;
 import it.therickys93.wikiserver.utils.Configurations;
 import it.therickys93.wikiserver.utils.DatabaseParser;
 
-public class AddCommand implements Command {
+public class NewCommand implements Command {
 
 	@Override
 	public String execute(String message, String user_id) {
@@ -21,13 +21,13 @@ public class AddCommand implements Command {
 			db.open();
 			CommandParser pars = new CommandParser(message);
 			DatabaseParser parser = new DatabaseParser(pars.getArgument());
-			Led led = parser.getLed();
-			db.insert(led, user_id);
-			int dbCount = db.countLed(led.getKey(), user_id);
+			Sensor sensor = parser.getSensor();
+			db.insert(sensor, user_id);
+			int dbCount = db.countSensor(sensor.getKey(), user_id);
 			db.close();
 			if(dbCount == 1){
 				WikiController wiki = new WikiController(Configurations.wikiControllerURL());
-				wiki.execute(new Init(led.getKey()));
+				wiki.execute(new Init(sensor.getKey()));
 			}
 			return "aggiunto correttamente";
 		} catch (SQLException e){
@@ -36,5 +36,5 @@ public class AddCommand implements Command {
 			return "aggiunto correttamente solo nel database";
 		}
 	}
-
+	
 }

@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import it.therickys93.wikiapi.model.Led;
+import it.therickys93.wikiapi.model.Sensor;
 import it.therickys93.wikiserver.utils.CommandParser;
 import it.therickys93.wikiserver.utils.DatabaseParser;
 
@@ -20,6 +21,8 @@ public class ParserTest {
 		assertEquals("luce cucina", led.getName());
 		assertEquals("cucina", led.getKey());
 		assertEquals(10, led.getPosition());
+		Sensor sensor = db.getSensor();
+		assertEquals("luce cucina", sensor.getName());
 	}
 	
 	@Test

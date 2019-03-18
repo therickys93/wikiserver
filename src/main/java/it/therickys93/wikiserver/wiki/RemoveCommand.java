@@ -12,10 +12,15 @@ public class RemoveCommand implements Command {
 			db.open();
 			CommandParser pars = new CommandParser(message);
 			String response = "";
-			if(db.remove(pars.getArgument(), user_id)){
+			if(db.removeLed(pars.getArgument(), user_id)){
 				response = "rimosso correttamente";
 			} else {
 				response = "nulla da rimuovere";
+				if(db.removeSensor(pars.getArgument(), user_id)){
+					response = "rimosso correttamente";
+				} else {
+					response = "nulla da rimuovere";
+				}
 			}
 			db.close();
 			return response;
