@@ -5,7 +5,6 @@ services:
 - docker
 script:
 - "./gradlew clean check jacocoTestReport stage"
--  bash <(curl -s https://codecov.io/bash)
 - docker build -t therickys93/wikiserver .
 after_success:
 - if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
