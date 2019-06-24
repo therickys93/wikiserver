@@ -25,18 +25,18 @@ public class StatusCommand implements Command {
 			String response = wiki.execute(new Status(led.getKey()));
 			Response status = Response.parseSuccess(response);
 			if (status == null) {
-                return "errore nello stato";
-            } else {
-                if (status.ok()) {
-                    if (status.message().charAt(led.getPosition() - 1) == '1') {
-                        return "acceso";
-                    } else {
-                        return "spento";
-                    }
-                } else {
-                    return "errore nello stato";
-                }
-            }
+                		return "errore nello stato";
+			} else {
+				if (status.ok()) {
+					if (status.message().charAt(led.getPosition()) == '1') {
+						return "acceso";
+					} else {
+						return "spento";
+					}
+				} else {
+					return "errore nello stato";
+				}
+            		}
 		} catch (SQLException e){
 			return "errore nel database";
 		} catch (IOException e){
