@@ -38,6 +38,7 @@ public class WikiAI {
 			commands.put("stato", new StatusCommand());
 			commands.put("apri", new OpenCloseCommand());
 			commands.put("chiudi", new OpenCloseCommand());
+			commands.put("versione", new VersionCommand());
 		}
 		
 		public Builder withCommands(Map<String, Command> commands){
