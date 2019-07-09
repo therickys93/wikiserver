@@ -14,6 +14,9 @@ services:
     restart: always
     environment:
       - "HOST=redis"
+      - "SERVER_URL=<server_no_protocol>"
+      - "APPLICATION_ID=<appID>"
+      - "MASTER_KEY=<appSecret>"
     networks:
       - backbone
 
