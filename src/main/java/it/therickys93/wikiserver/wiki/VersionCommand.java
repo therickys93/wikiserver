@@ -18,13 +18,7 @@ public class VersionCommand implements Command {
 			WikiController wikicontroller = new WikiController(Configurations.wikiControllerURL());
 			String response = wikicontroller.execute(new Version());
 			result += "Controller: " + response + " ";
-	        Process p = Runtime.getRuntime().exec("git describe --abbrev=0 --tags");
-	        BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
-	        String line; 
-	        while ((line = input.readLine()) != null)
-	        {
-	            result += "Server: " + line;
-	        }
+	        result += "Server: 1.8";
 		} catch (IOException e){
 			e.printStackTrace();
 			result = "Errore nella versione";
